@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manage Activities | STEM Outreach</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body data-page="adminActivities">
+<div id="nav"></div>
+<main class="container py-4"><div id="alert"></div>
+
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h3 fw-bold mb-0">Manage Activities</h1><button class="btn btn-launch" id="addBtn">+ Add Activity</button></div>
+<div class="glass table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Title</th><th>Category</th><th>Level</th><th>Minutes</th><th>Questions</th><th></th></tr></thead><tbody id="tbody"><tr><td colspan="6">Loading...</td></tr></tbody></table></div>
+<div class="modal fade" id="aModal" tabindex="-1"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content">
+<div class="modal-header"><h2 class="modal-title h5" id="aTitleHead">Add Activity</h2><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+<div class="modal-body"><div id="aErr"></div><input type="hidden" id="aId"><div class="row g-3">
+<div class="col-md-6"><label class="form-label" for="aTitle">Title</label><input id="aTitle" class="form-control"></div>
+<div class="col-md-3"><label class="form-label" for="aCategory">Category</label><select id="aCategory" class="form-select"></select></div>
+<div class="col-md-3"><label class="form-label" for="aDifficulty">Difficulty</label><select id="aDifficulty" class="form-select"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
+<div class="col-md-3"><label class="form-label" for="aDuration">Duration (minutes)</label><input type="number" min="1" id="aDuration" class="form-control" value="15"></div>
+<div class="col-md-9"><label class="form-label" for="aObjective">Learning Objective</label><input id="aObjective" class="form-control"></div>
+<div class="col-12"><label class="form-label" for="aDescription">Description</label><textarea id="aDescription" class="form-control" rows="2"></textarea></div>
+<div class="col-12"><label class="form-label" for="aInstructions">Instructions</label><textarea id="aInstructions" class="form-control" rows="2"></textarea></div></div>
+<h3 class="h6 mt-4">Questions</h3><div id="qList"></div><button class="btn btn-outline-info btn-sm" id="addQ" type="button">+ Add Question</button></div>
+<div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button class="btn btn-launch" id="saveBtn">Save Activity</button></div></div></div></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

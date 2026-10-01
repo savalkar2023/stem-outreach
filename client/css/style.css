@@ -1,0 +1,46 @@
+/* STEM Outreach - Space Explorer theme (works with Bootstrap 5 dark mode) */
+:root{--cy:#00e0ff;--vi:#7c5cff;--glass:rgba(255,255,255,.08);--line:rgba(255,255,255,.22);--grad:linear-gradient(90deg,#00e0ff,#7c5cff)}
+body{min-height:100vh;color:#fff;font-family:"Segoe UI","Trebuchet MS",system-ui,sans-serif;background-color:#0a1030;
+ background-image:radial-gradient(circle at 85% 6%,rgba(91,61,245,.7) 0,transparent 42%),radial-gradient(circle at 8% 95%,rgba(15,181,214,.5) 0,transparent 38%),radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#9fdcff 1px,transparent 1.5px);
+ background-size:auto,auto,47px 53px,71px 67px;background-position:0 0,0 0,5px 9px,20px 30px;background-attachment:fixed}
+.navbar{background:rgba(6,12,40,.85)!important;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.navbar .nav-link{color:#b8c4ff}.navbar .nav-link.active,.navbar .nav-link:hover{color:var(--cy)}
+.navbar-brand{font-weight:700}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(8px);padding:1.1rem 1.2rem}
+.btn-launch{background:var(--grad);border:0;color:#06102e;font-weight:700;border-radius:14px;padding:.7rem 1rem;box-shadow:0 0 18px rgba(0,224,255,.35)}
+.btn-launch:hover{color:#06102e;filter:brightness(1.1)}
+.form-control,.form-select{background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;border-radius:12px}
+.form-control:focus,.form-select:focus{background:rgba(255,255,255,.12);color:#fff;border-color:var(--cy);box-shadow:0 0 0 .2rem rgba(0,224,255,.2)}
+.form-control::placeholder{color:#93a2e6}
+.form-select option{color:#0a1030}
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.auth-card{width:100%;max-width:440px}
+.auth-card.wide{max-width:640px}
+.rocket{font-size:3.2rem;line-height:1;filter:drop-shadow(0 0 14px rgba(0,224,255,.6))}
+.stem-icons{text-align:center;font-size:1.6rem;letter-spacing:.6rem;opacity:.9}
+.stat{text-align:center;height:100%}
+.stat-icon{font-size:1.8rem}.stat-val{font-size:1.7rem;font-weight:700;color:var(--cy)}.stat-label{color:#b8c4ff;font-size:.9rem}
+.chart-box{position:relative;height:280px}
+.cat-icon{font-size:1.6rem}
+.badge-soft{background:rgba(124,92,255,.35);border:1px solid rgba(124,92,255,.7);font-weight:500}
+.activity-card{height:100%;display:flex;flex-direction:column}.activity-card .btn{margin-top:auto}
+.avatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid var(--cy);box-shadow:0 0 18px rgba(0,224,255,.4)}
+.avatar-ph{display:inline-flex;align-items:center;justify-content:center;background:var(--grad);color:#06102e;font-size:2.6rem;font-weight:700}
+.q-block{border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem;margin-bottom:.8rem;background:rgba(255,255,255,.05)}
+.q-block label{cursor:pointer;display:block;padding:.35rem .6rem;border-radius:10px}
+.q-block label:hover{background:rgba(0,224,255,.12)}
+.ans-ok{border-left:4px solid #3ecf9a}.ans-bad{border-left:4px solid #ff7b76}
+.table{--bs-table-bg:transparent;--bs-table-color:#fff;--bs-table-border-color:var(--line)}
+.modal-content{background:#101a3c;border:1px solid var(--line)}
+a{color:var(--cy)}
+/* Certificate */
+.certificate{background:#fffdf5;color:#1a2440;border:10px double #0e7c86;border-radius:10px;padding:2rem 1rem;text-align:center;max-width:860px;margin:auto}
+.certificate h1{font-family:Georgia,serif;color:#0e7c86}
+.cert-name{font-size:2.4rem;border-bottom:2px solid #ff9f1c;display:inline-block;padding:0 1.5rem;margin:.4rem 0 1rem}
+.cert-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem;font-size:.95rem}
+@media print{
+ body{background:#fff!important}
+ #nav,.no-print,.alert{display:none!important}
+ .certificate{border-width:10px;max-width:100%;margin:0}
+ main{padding:0!important}
+}
