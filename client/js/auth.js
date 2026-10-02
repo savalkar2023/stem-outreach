@@ -12,7 +12,8 @@ function loginPage() {
     await busy($('btn'), async () => {
       try {
         const d = await api('/auth/login', { method: 'POST', body: { email, password }, noRedirect: true });
-                flashToast('Login successful! Welcome, ' + d.user.name + '.');
+        Auth.save(d.token, d.user);
+                 flashToast('Login successful! Welcome, ' + d.user.name + '.');
         location.href = d.user.role === 'admin' ? '/admin/dashboard.html' : '/dashboard.html';   // role-based redirect
       } catch (err) {
         if (err.data && err.data.needsVerification) {
