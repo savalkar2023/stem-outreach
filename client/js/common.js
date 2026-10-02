@@ -123,3 +123,63 @@ function drawChart(id, type, labels, datasets, options) {
   charts[id] = new Chart(el, { type, data: { labels, datasets }, options: Object.assign({ responsive: true, maintainAspectRatio: false }, options || {}) });
 }
 const PCT_AXIS = { scales: { y: { beginAtZero: true, max: 100 } }, plugins: { legend: { display: false } } };
+
+// ---------- Pop-up messages (toasts) shown at the top-right corner ----------
+function toast(msg, type) {
+  type = type || 'success';
+  let box = $('toastBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'toastBox';
+    box.className = 'toast-container position-fixed end-0 p-3';
+    box.style.zIndex = 2000;
+    box.style.top = $('nav') ? '64px' : '0';
+    document.body.appendChild(box);
+  }
+  const el = document.createElement('div');
+  el.className = 'toast align-items-center text-bg-' + type + ' border-0';
+  el.setAttribute('role', 'alert');
+  el.innerHTML = '<div class="d-flex"><div class="toast-body fw-semibold">' + (type === 'success' ? '✅ ' : '⚠️ ') + esc(msg) +
+    '</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div>';
+  box.appendChild(el);
+  el.addEventListener('hidden.bs.toast', () => el.remove());
+  new bootstrap.Toast(el, { delay: 4000 }).show();
+}
+
+// Save a message now, show it as a pop-up on the NEXT page (used before a redirect).
+function flashToast(msg, type) {
+  try { sessionStorage.setItem('stem_flash', JSON.stringify({ msg: msg, type: type || 'success' })); } catch (e) { /* ignore */ }
+}
+
+// ---------- Show / Hide button for every password box ----------
+function addPasswordToggles() {
+  document.querySelectorAll('input[type="password"]').forEach(inp => {
+    if (inp.dataset.toggle) return;
+    inp.dataset.toggle = '1';
+    const wrap = document.createElement('div');
+    wrap.className = 'pw-wrap';
+    inp.parentNode.insertBefore(wrap, inp);
+    wrap.appendChild(inp);
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pw-toggle';
+    b.textContent = 'Show';
+    b.setAttribute('aria-label', 'Show password');
+    b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => {
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      b.textContent = show ? 'Hide' : 'Show';
+      b.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      b.setAttribute('aria-pressed', String(show));
+    };
+    wrap.appendChild(b);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  addPasswordToggles();
+  let f = null;
+  try { f = JSON.parse(sessionStorage.getItem('stem_flash')); sessionStorage.removeItem('stem_flash'); } catch (e) { /* ignore */ }
+  if (f && f.msg) toast(f.msg, f.type);
+});

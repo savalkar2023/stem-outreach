@@ -12,7 +12,7 @@ function loginPage() {
     await busy($('btn'), async () => {
       try {
         const d = await api('/auth/login', { method: 'POST', body: { email, password }, noRedirect: true });
-        Auth.save(d.token, d.user);
+                flashToast('Login successful! Welcome, ' + d.user.name + '.');
         location.href = d.user.role === 'admin' ? '/admin/dashboard.html' : '/dashboard.html';   // role-based redirect
       } catch (err) {
         if (err.data && err.data.needsVerification) {
@@ -81,8 +81,8 @@ function verifyPage() {
           sessionStorage.setItem('stem_reset_token', d.resetToken);
           location.href = '/reset-password.html';
         } else {
-          showAlert(d.message + ' Redirecting to Login...', 'success');
-          setTimeout(() => { location.href = '/login.html'; }, 1500);
+                    flashToast('Account created successfully! Please login.');
+          location.href = '/login.html';
         }
       } catch (err) { showAlert(err.message); }
     });
